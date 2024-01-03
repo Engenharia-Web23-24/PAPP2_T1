@@ -1,0 +1,42 @@
+﻿@model IEnumerable<PAPP2.Models.UnidadeCurricular>
+
+@{
+    ViewData["Title"] = "UCs";
+}
+
+<h1>Lista das UCs</h1>
+<p>Ano : @DateTime.Now.Year</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ECTS)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ECTS)
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
