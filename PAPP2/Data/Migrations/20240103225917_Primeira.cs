@@ -22,40 +22,40 @@ namespace PAPP2.Data.Migrations
                 {
                     table.PrimaryKey("PK_UnidadesCurriculares", x => x.Codigo);
                 });
-
+    
             migrationBuilder.CreateTable(
                 name: "Inscricoes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UCId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UCId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Ano = table.Column<int>(type: "int", nullable: false),
-                    UnidadeCurricularCodigo = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    Ano = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Inscricoes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Inscricoes_UnidadesCurriculares_UnidadeCurricularCodigo",
-                        column: x => x.UnidadeCurricularCodigo,
+                        name: "FK_Inscricoes_UnidadesCurriculares_UCId",
+                        column: x => x.UCId,
                         principalTable: "UnidadesCurriculares",
-                        principalColumn: "Codigo");
+                        principalColumn: "Codigo",
+                        onDelete: ReferentialAction.Cascade);
                 });
-
+    
             migrationBuilder.CreateIndex(
-                name: "IX_Inscricoes_UnidadeCurricularCodigo",
+                name: "IX_Inscricoes_UCId",
                 table: "Inscricoes",
-                column: "UnidadeCurricularCodigo");
+                column: "UCId");
         }
-
+    
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Inscricoes");
-
+    
             migrationBuilder.DropTable(
                 name: "UnidadesCurriculares");
         }
