@@ -10,12 +10,12 @@ namespace PAPP2.Models
         public int Id { get; set; }
 
         [Required]
-        [ForeignKey("UnidadesCurriculares")]
+        [ForeignKey("UCId")]
         public string? UCId { get; set; }
-
+        
         [Required]
         public string? Username { get; set;}
-
+        
         public int Ano { get; set;}
     }
 }
