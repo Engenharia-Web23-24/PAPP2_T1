@@ -11,7 +11,7 @@ using PAPP2.Data;
 namespace PAPP2.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+        partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -237,9 +237,6 @@ namespace PAPP2.Data.Migrations
 
                     b.Property<string>("UCId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UnidadeCurricularCodigo")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Username")
@@ -248,7 +245,7 @@ namespace PAPP2.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UnidadeCurricularCodigo");
+                    b.HasIndex("UCId");
 
                     b.ToTable("Inscricoes");
                 });
@@ -325,7 +322,9 @@ namespace PAPP2.Data.Migrations
                 {
                     b.HasOne("PAPP2.Models.UnidadeCurricular", null)
                         .WithMany("Inscricoes")
-                        .HasForeignKey("UnidadeCurricularCodigo");
+                        .HasForeignKey("UCId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("PAPP2.Models.UnidadeCurricular", b =>
